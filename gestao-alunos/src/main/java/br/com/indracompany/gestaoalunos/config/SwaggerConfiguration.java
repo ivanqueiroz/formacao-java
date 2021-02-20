@@ -14,14 +14,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
+    public static final String PACKAGE = "br.com.indracompany.gestaoalunos.resources";
+
     @Bean
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
-            .apis(RequestHandlerSelectors.basePackage("br.com.indracompany.gestaoalunos.resources"))
+            .apis(RequestHandlerSelectors.basePackage(PACKAGE))
             .paths(PathSelectors.any()).build()
             .apiInfo(apiInfo());
-
     }
 
     private ApiInfo apiInfo(){
@@ -31,5 +32,4 @@ public class SwaggerConfiguration {
             .version("1.0")
             .build();
     }
-
 }

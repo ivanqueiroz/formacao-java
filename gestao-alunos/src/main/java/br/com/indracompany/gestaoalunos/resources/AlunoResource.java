@@ -2,6 +2,8 @@ package br.com.indracompany.gestaoalunos.resources;
 
 import br.com.indracompany.gestaoalunos.model.Aluno;
 import br.com.indracompany.gestaoalunos.repository.Alunos;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Api
 @RestController
 @RequestMapping(path = "/api/alunos")
 public class AlunoResource {
@@ -25,18 +28,21 @@ public class AlunoResource {
     @Autowired
     private Alunos alunosRepository;
 
+    @ApiOperation("Cadastra alunos, um por vez.")
     @PostMapping
     public ResponseEntity<Aluno> save(@RequestBody Aluno aluno) {
         alunosRepository.save(aluno);
         return new ResponseEntity<>(aluno, HttpStatus.OK);
     }
 
+    @ApiOperation("Consulta todos os alunos, retornando uma lista.")
     @GetMapping
     public ResponseEntity<List<Aluno>> getAll() {
         List<Aluno> alunos = alunosRepository.findAll();
         return new ResponseEntity<>(alunos, HttpStatus.OK);
     }
 
+    @ApiOperation("Consulta um aluno pelo id.")
     @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<Aluno>> getById(@PathVariable Long id) {
         Optional<Aluno> aluno;
@@ -48,6 +54,7 @@ public class AlunoResource {
         }
     }
 
+    @ApiOperation("Exclui um aluno pelo id.")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Optional<Aluno>> deleteById(@PathVariable Long id) {
         try {
@@ -58,6 +65,7 @@ public class AlunoResource {
         }
     }
 
+    @ApiOperation("Atualiza um aluno pelo id.")
     @PutMapping(path = "/{id}")
     public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno alunoAtualizado) {
         return alunosRepository.findById(id)

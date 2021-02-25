@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +19,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Api
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api/alunos")
 public class AlunoResource {

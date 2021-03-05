@@ -19,7 +19,6 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Api
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api/alunos")
 public class AlunoResource {
